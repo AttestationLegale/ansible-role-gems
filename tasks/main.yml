@@ -1,0 +1,13 @@
+---
+
+# Main tasks file for gems role
+
+- name: Install ruby gems
+  gem:
+    name: "{{ item.name }}"
+    state: "{{ item.state|default('present') }}"
+  with_flattened:
+    - "{{ gems_packages }}"
+    - "{{ gems_group_packages }}"
+    - "{{ gems_host_packages }}"
+  tags: [gems]
