@@ -2,7 +2,7 @@
 sudo: required
 language: python
 python: "2.7"
-ruby: "2.1"
+rvm: "2.1.5"
 
 env:
   - SITE=test.yml
