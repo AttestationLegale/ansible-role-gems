@@ -39,7 +39,7 @@ script:
 
   # Check if module is installed
   - >
-    /usr/local/bin/check-ping.rb
+    gem list
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
