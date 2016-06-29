@@ -23,7 +23,7 @@ install:
 
 script:
   - >
-    ruby -v
+    gem list
 
   # Check the role/playbook's syntax.
   - "ansible-playbook -i tests/inventory tests/$SITE --syntax-check"
