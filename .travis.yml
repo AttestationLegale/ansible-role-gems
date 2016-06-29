@@ -20,7 +20,7 @@ install:
   # Add ansible.cfg to pick up roles path.
   - "{ echo '[defaults]'; echo 'roles_path = ../'; } >> ansible.cfg"
 
-  #
+  # Workaround so that gem is in the PATH even with sudo
   - sudo sed -i -e 's/^Defaults\tsecure_path.*$//' /etc/sudoers
 
 script:
@@ -39,7 +39,7 @@ script:
 
   # Check if module is installed
   - >
-    check-ping.rb
+    /usr/local/bin/check-ping.rb
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
