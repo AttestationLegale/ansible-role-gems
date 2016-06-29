@@ -22,14 +22,11 @@ install:
   - "{ echo '[defaults]'; echo 'roles_path = ../'; } >> ansible.cfg"
 
 script:
-  - >
-    gem list
-
   # Check the role/playbook's syntax.
   - "ansible-playbook -i tests/inventory tests/$SITE --syntax-check"
 
   # Run the role/playbook with ansible-playbook.
-  - "ansible-playbook -i tests/inventory tests/$SITE --connection=local --sudo"
+  - "rvm use 2.1.5 --default && ansible-playbook -i tests/inventory tests/$SITE --connection=local --sudo"
 
   # Run the role/playbook again, checking to make sure it's idempotent.
   - >
