@@ -2,6 +2,7 @@
 sudo: required
 language: python
 python: "2.7"
+rvm: 2.1.5
 
 env:
   - SITE=test.yml
@@ -17,11 +18,10 @@ install:
   # Add ansible.cfg to pick up roles path.
   - "{ echo '[defaults]'; echo 'roles_path = ../'; } >> ansible.cfg"
 
-matrix:
-  include:
-    - rvm: 2.1.5
-
 script:
+
+  - >
+    rvm use 2.1.5
 
   - >
     ruby -v
