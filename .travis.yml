@@ -21,7 +21,7 @@ install:
 script:
 
   - >
-    rvm use 2.1.5
+    rvm install ruby-2.1.5 && rvm use 2.1.5 --default
 
   - >
     ruby -v
