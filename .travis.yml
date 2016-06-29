@@ -1,8 +1,7 @@
 ---
-sudo: required
+#sudo: required
 language: python
 python: "2.7"
-rvm: 2.1.5
 
 env:
   - SITE=test.yml
@@ -26,7 +25,7 @@ script:
   - "ansible-playbook -i tests/inventory tests/$SITE --syntax-check"
 
   # Run the role/playbook with ansible-playbook.
-  - "rvm use 2.1.5 --default && ansible-playbook -i tests/inventory tests/$SITE --connection=local --sudo"
+  - "ansible-playbook -i tests/inventory tests/$SITE --connection=local --sudo"
 
   # Run the role/playbook again, checking to make sure it's idempotent.
   - >
