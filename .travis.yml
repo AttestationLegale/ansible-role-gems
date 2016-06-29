@@ -12,6 +12,9 @@ before_install:
   - sudo apt-get install -y curl
 
 install:
+  # Install ruby 2.1.5
+  - rvm install ruby-2.1.5 && rvm use 2.1.5 --default
+
   # Install Ansible.
   - pip install ansible
 
@@ -19,10 +22,6 @@ install:
   - "{ echo '[defaults]'; echo 'roles_path = ../'; } >> ansible.cfg"
 
 script:
-
-  - >
-    rvm install ruby-2.1.5 && rvm use 2.1.5 --default && gem list
-
   - >
     ruby -v
 
