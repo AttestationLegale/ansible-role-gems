@@ -1,7 +1,7 @@
 ---
-#sudo: required
-language: python
-python: "2.7"
+sudo: required
+language: ruby
+rvm: 2.1.5
 
 env:
   - SITE=test.yml
@@ -11,9 +11,6 @@ before_install:
   - sudo apt-get install -y curl
 
 install:
-  # Install ruby 2.1.5
-  - rvm install ruby-2.1.5 && rvm use 2.1.5 --default
-
   # Install Ansible.
   - pip install ansible
 
@@ -39,7 +36,7 @@ script:
 
   # Check if module is installed
   - >
-    sudo gem install sensu-plugins-network-checks
+    check-ping.rb
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
