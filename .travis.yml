@@ -1,34 +1,34 @@
 ---
 sudo: required
-language: ruby
-rvm: 2.1.5
+language: python
+python: "2.7"
 
 env:
   - SITE=test.yml
 
 before_install:
   - sudo apt-get update -qq
-  - sudo apt-get install -y curl python-dev
+  - sudo apt-get install -y curl
 
 install:
-  # Upgrade pip
-  - sudo pip install --upgrade pip
+  # Install ruby 2.1.5
+  - rvm install ruby-2.1.5
 
   # Install Ansible.
-  - sudo pip install ansible
+  - pip install ansible
 
   # Add ansible.cfg to pick up roles path.
   - "{ echo '[defaults]'; echo 'roles_path = ../'; } >> ansible.cfg"
-
-  # Workaround so that gem is in the PATH even with sudo
-  - sudo sed -i -e 's/^Defaults\tsecure_path.*$//' /etc/sudoers
 
 script:
   # Check the role/playbook's syntax.
   - "ansible-playbook -i tests/inventory tests/$SITE --syntax-check"
 
   # Run the role/playbook with ansible-playbook.
-  - "ansible-playbook -vvv -i tests/inventory tests/$SITE --connection=local --sudo"
+  - "ansible-playbook -i tests/inventory tests/$SITE --connection=local --sudo"
+
+  # Run the role/playbook with ansible-playbook.
+  - "ansible-playbook -i tests/inventory tests/$SITE --connection=local --sudo"
 
   # Run the role/playbook again, checking to make sure it's idempotent.
   - >
@@ -36,10 +36,6 @@ script:
     | grep -q 'changed=1.*failed=0'
     && (echo 'Idempotence test: pass' && exit 0)
     || (echo 'Idempotence test: fail' && exit 1)
-
-  # Check if module is installed
-  - >
-    check-ping.rb
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
