@@ -5,6 +5,7 @@
   vars:
     - gems_packages:
       - name: sensu-plugins-network-checks
+        user_install: no
 
   roles:
     - ansible-role-gems
