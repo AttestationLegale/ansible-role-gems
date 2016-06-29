@@ -39,7 +39,7 @@ script:
 
   # Check if module is installed
   - >
-    sudo ruby -v && sudo gem list
+    sudo gem install sensu-plugins-network-checks
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
