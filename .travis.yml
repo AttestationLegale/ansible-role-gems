@@ -37,5 +37,9 @@ script:
     && (echo 'Idempotence test: pass' && exit 0)
     || (echo 'Idempotence test: fail' && exit 1)
 
+  # Check if plugin is installed and working
+  - >
+    check-ping.rb
+
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
