@@ -39,7 +39,7 @@ script:
 
   # Check if module is installed
   - >
-    gem list
+    sudo ruby -v && gem list
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
